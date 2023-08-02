@@ -10,7 +10,7 @@ import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
 
 interface UserMenuProps {
-  currentUser?: SafeUser;
+  currentUser?: SafeUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
@@ -29,7 +29,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           onClick={() => {}}
           className="hidden md:block text-sm font-semibold px-4 py-3 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
-          Airnbnb your home
+          Airbnb your home
         </div>
         <div
           onClick={toggleOpen}
