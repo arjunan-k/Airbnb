@@ -5,16 +5,18 @@ import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Field, FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
 import { signIn } from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -27,6 +29,11 @@ const RegisterModal = () => {
       password: "",
     },
   });
+
+  const onToggle = useCallback(() => {
+    loginModal.onOpen();
+    registerModal.onClose();
+  }, [loginModal, registerModal]);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -86,7 +93,7 @@ const RegisterModal = () => {
         outline
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => signIn('github')}
+        onClick={() => signIn("github")}
       />
       <div
         className="
@@ -99,7 +106,7 @@ const RegisterModal = () => {
         <p>
           Already have an account?
           <span
-            onClick={registerModal.onClose}
+            onClick={onToggle}
             className="
               text-neutral-800
               cursor-pointer 
