@@ -27,7 +27,7 @@ enum STEPS {
 
 const RentModal = () => {
   const rentModal = useRentModal();
-  const router = useRouter()
+  const router = useRouter();
   const [step, setStep] = useState(STEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -85,17 +85,27 @@ const RentModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if(step != STEPS.PRICE) {
-      return onNext()
+    if (step != STEPS.PRICE) {
+      return onNext();
     }
 
-    setIsLoading(true)
-    axios.post("/api/listings", data)
-    .then(() => {
-      toast.success("Listings Created!")
-      router.refresh()
-    })
-  }
+    setIsLoading(true);
+    axios
+      .post("/api/listings", data)
+      .then(() => {
+        toast.success("Listings Created!");
+        router.refresh();
+        reset();
+        setStep(STEPS.CATEGORY);
+        rentModal.onClose();
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
@@ -245,7 +255,7 @@ const RentModal = () => {
 
   return (
     <Modal
-      onSubmit={onNext}
+      onSubmit={handleSubmit(onSubmit)}
       isOpen={rentModal.isOpen}
       title="Airbnb your home!"
       actionLabel={actionLabel}
