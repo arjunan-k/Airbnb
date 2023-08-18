@@ -6,9 +6,9 @@ import { Reservation } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useMemo } from "react";
 import { format } from "date-fns";
-import Button from "../../Button";
+import Button from "../Button";
 import Image from "next/image";
-import HeartButton from "../../HeartButton";
+import HeartButton from "../HeartButton";
 
 interface ListingCardProps {
   data: SafeListing;
