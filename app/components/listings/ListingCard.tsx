@@ -3,7 +3,7 @@
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, SafeUser, SafeReservation } from "@/app/types";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 import Button from "../Button";
 import Image from "next/image";

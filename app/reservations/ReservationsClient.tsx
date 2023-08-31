@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
 import React, { useCallback, useState } from "react";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import ListingCard from "../components/listings/ListingCard";
-import { SafeUser, safeReservations } from "../types";
+import { SafeUser, SafeReservation } from "../types";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
 interface ReservationsClientProps {
   currentUser: SafeUser;
-  reservations: safeReservations[];
+  reservations: SafeReservation[];
 }
 
 const ReservationsClient: React.FC<ReservationsClientProps> = ({
