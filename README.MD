@@ -2,6 +2,8 @@
 
 ![airbnb](./public/preview.png)
 
+Preview
+
 Tech stack: NextJS, React, Tailwind, Prisma, MongoDB, NextAuth.
 
 Key Features:
